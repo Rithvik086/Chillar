@@ -13,7 +13,7 @@
     "mobile": "npm run start --workspace=@chillar/mobile",
     "android": "npm run android --workspace=@chillar/mobile",
     "backend": "npm run dev --workspace=@chillar/backend",
-    "typecheck": "npm run typecheck --workspaces --if-present"
+    "typecheck": "npm run typecheck --workspaces"
   },
   "type": "commonjs",
   "devDependencies": {
