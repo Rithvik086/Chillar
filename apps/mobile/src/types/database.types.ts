@@ -461,6 +461,10 @@ export type Database = {
     }
     Functions: {
       accept_group_invite: { Args: { p_token_hash: string }; Returns: string }
+      create_group: {
+        Args: { p_description?: string; p_name: string }
+        Returns: string
+      }
       can_manage_expense: {
         Args: { p_expense_id: string; p_user_id?: string }
         Returns: boolean
