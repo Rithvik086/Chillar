@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import type { ReactElement } from "react";
-import { useAuth } from "../../../src/auth/AuthProvider";
+import { useAuth } from "@/auth/AuthProvider";
 
 export default function ProfileScreen(): ReactElement {
   const { signOut, user } = useAuth();

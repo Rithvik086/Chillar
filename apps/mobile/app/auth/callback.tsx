@@ -6,7 +6,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useEffect, useState, type ReactElement } from "react";
-import { exchangeOAuthCallback } from "../../src/auth/oauth";
+import { exchangeOAuthCallback } from "@/auth/oauth";
 
 export default function OAuthCallbackScreen(): ReactElement {
   const router = useRouter();

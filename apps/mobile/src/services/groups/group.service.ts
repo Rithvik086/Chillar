@@ -1,5 +1,5 @@
-import { supabase } from "../../utils/supabase";
-import type { Database } from "../../types/database.types";
+import { supabase } from "@/utils/supabase";
+import type { Database } from "@/types/database.types";
 
 type GroupRow = Database["public"]["Tables"]["groups"]["Row"];
 type GroupMemberRow = Database["public"]["Tables"]["group_members"]["Row"];

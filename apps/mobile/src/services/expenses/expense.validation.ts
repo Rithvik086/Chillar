@@ -4,7 +4,7 @@ import {
   validateExpense,
   type Expense,
 } from "@chillar/core";
-import type { ExpenseAllocationInput, ExpenseSplitType } from "./expense.types";
+import type { ExpenseAllocationInput, ExpenseSplitType } from "@/services/expenses/expense.types";
 
 export const MAX_EXPENSE_ALLOCATIONS = 20;
 const UUID_PATTERN =

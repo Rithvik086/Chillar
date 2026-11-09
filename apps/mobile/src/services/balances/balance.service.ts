@@ -7,10 +7,10 @@ import {
   type ProposedSettlement,
   type SettlementSuggestion,
 } from "@chillar/core";
-import { supabase } from "../../utils/supabase";
-import { fetchGroupExpenses } from "../expenses/expense.repository";
-import type { Database } from "../../types/database.types";
-import { assertValidUuid } from "../expenses/expense.validation";
+import { supabase } from "@/utils/supabase";
+import { fetchGroupExpenses } from "@/services/expenses/expense.repository";
+import type { Database } from "@/types/database.types";
+import { assertValidUuid } from "@/services/expenses/expense.validation";
 
 type PaymentRow = Database["public"]["Tables"]["payments"]["Row"];
 

@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import type { ReactElement } from "react";
-import { dashboardColors } from "../theme";
-import type { DashboardGroup } from "../types/dashboard.types";
+import { dashboardColors } from "@/features/dashboard/theme";
+import type { DashboardGroup } from "@/features/dashboard/types/dashboard.types";
 import { GroupListItem } from "./GroupListItem";
 
 export function GroupList({
@@ -12,16 +12,18 @@ export function GroupList({
 }: {
   groups: readonly DashboardGroup[];
   onGroupPress: (groupId: string) => void;
-  onCreate: () => void;
+  onCreate?: () => void;
   onJoin?: () => void;
 }): ReactElement {
   return (
     <View style={styles.container}>
       <View style={styles.heading}>
         <Text style={styles.title}>Your Groups</Text>
-        <Pressable accessibilityRole="button" onPress={onCreate}>
-          <Text style={styles.action}>Create Group</Text>
-        </Pressable>
+        {onCreate ? (
+          <Pressable accessibilityRole="button" onPress={onCreate}>
+            <Text style={styles.action}>Create Group</Text>
+          </Pressable>
+        ) : null}
       </View>
       {groups.length === 0 ? (
         <View style={styles.empty}>
@@ -29,24 +31,28 @@ export function GroupList({
           <Text style={styles.emptyText}>
             Create a group or join one to start sharing expenses.
           </Text>
-          <View style={styles.actions}>
-            <Pressable
-              accessibilityRole="button"
-              onPress={onCreate}
-              style={styles.primary}
-            >
-              <Text style={styles.primaryText}>Create Group</Text>
-            </Pressable>
-            {onJoin ? (
-              <Pressable
-                accessibilityRole="button"
-                onPress={onJoin}
-                style={styles.secondary}
-              >
-                <Text style={styles.secondaryText}>Join Group</Text>
-              </Pressable>
-            ) : null}
-          </View>
+          {onCreate || onJoin ? (
+            <View style={styles.actions}>
+              {onCreate ? (
+                <Pressable
+                  accessibilityRole="button"
+                  onPress={onCreate}
+                  style={styles.primary}
+                >
+                  <Text style={styles.primaryText}>Create Group</Text>
+                </Pressable>
+              ) : null}
+              {onJoin ? (
+                <Pressable
+                  accessibilityRole="button"
+                  onPress={onJoin}
+                  style={styles.secondary}
+                >
+                  <Text style={styles.secondaryText}>Join Group</Text>
+                </Pressable>
+              ) : null}
+            </View>
+          ) : null}
         </View>
       ) : (
         groups.map((group) => (

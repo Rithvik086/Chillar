@@ -1,5 +1,5 @@
-import type { ExpenseReadModel } from "../../../services/expenses/expense.types";
-import type { DashboardData, PaymentRow } from "../types/dashboard.types";
+import type { ExpenseReadModel } from "@/services/expenses/expense.types";
+import type { DashboardData, PaymentRow } from "@/features/dashboard/types/dashboard.types";
 
 function grossAmountsForUser(
   expenses: readonly ExpenseReadModel[],

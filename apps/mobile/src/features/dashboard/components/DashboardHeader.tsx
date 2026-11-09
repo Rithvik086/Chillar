@@ -1,8 +1,8 @@
 import { Link } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import type { ReactElement } from "react";
-import { dashboardColors } from "../theme";
-import { initials } from "../utils/dashboard.formatters";
+import { dashboardColors } from "@/features/dashboard/theme";
+import { initials } from "@/features/dashboard/utils/dashboard.formatters";
 
 export function DashboardHeader({
   displayName,

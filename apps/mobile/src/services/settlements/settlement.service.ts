@@ -1,8 +1,8 @@
-import { supabase } from "../../utils/supabase";
-import type { Database } from "../../types/database.types";
-import { assertValidUuid } from "../expenses/expense.validation";
-import { ExpenseServiceError, mapExpenseError } from "../expenses/expense.errors";
-import { calculateGroupBalances, type GroupBalanceResult } from "../balances/balance.service";
+import { supabase } from "@/utils/supabase";
+import type { Database } from "@/types/database.types";
+import { assertValidUuid } from "@/services/expenses/expense.validation";
+import { ExpenseServiceError, mapExpenseError } from "@/services/expenses/expense.errors";
+import { calculateGroupBalances, type GroupBalanceResult } from "@/services/balances/balance.service";
 
 type PaymentRow = Database["public"]["Tables"]["payments"]["Row"];
 export type PaymentStatus = "pending" | "confirmed" | "rejected" | "cancelled";

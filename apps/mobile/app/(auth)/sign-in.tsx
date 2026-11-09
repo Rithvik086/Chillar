@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import type { ReactElement } from "react";
-import { useAuth } from "../../src/auth/AuthProvider";
+import { useAuth } from "@/auth/AuthProvider";
 
 export default function SignInScreen(): ReactElement {
   const { clearError, errorMessage, isSigningIn, signInWithGoogle } = useAuth();

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import type { ExpenseReadModel } from "../../../services/expenses/expense.types";
-import { calculateDashboardTotals } from "../utils/dashboard.calculations";
+import type { ExpenseReadModel } from "@/services/expenses/expense.types";
+import { calculateDashboardTotals } from "@/features/dashboard/utils/dashboard.calculations";
 
 const userId = "11111111-1111-4111-8111-111111111111";
 const otherUserId = "22222222-2222-4222-8222-222222222222";

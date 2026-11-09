@@ -1,11 +1,11 @@
 import type { UserBalance } from "@chillar/core";
-import { calculateGroupBalances } from "../../../services/balances/balance.service";
-import { fetchGroupExpenses } from "../../../services/expenses/expense.repository";
-import type { ExpenseReadModel } from "../../../services/expenses/expense.types";
-import { fetchGroupPaymentHistory } from "../../../services/settlements/settlement.service";
-import { fetchUserGroups } from "../../../services/groups/group.service";
-import type { DashboardActivity, DashboardData, DashboardGroup, PaymentRow } from "../types/dashboard.types";
-import { calculateDashboardTotals } from "../utils/dashboard.calculations";
+import { calculateGroupBalances } from "@/services/balances/balance.service";
+import { fetchGroupExpenses } from "@/services/expenses/expense.repository";
+import type { ExpenseReadModel } from "@/services/expenses/expense.types";
+import { fetchGroupPaymentHistory } from "@/services/settlements/settlement.service";
+import { fetchUserGroups } from "@/services/groups/group.service";
+import type { DashboardActivity, DashboardData, DashboardGroup, PaymentRow } from "@/features/dashboard/types/dashboard.types";
+import { calculateDashboardTotals } from "@/features/dashboard/utils/dashboard.calculations";
 
 function balanceForUser(balances: readonly UserBalance[], userId: string): number {
   return balances.find((entry) => entry.userId === userId)?.balance ?? 0;

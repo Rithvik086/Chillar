@@ -1,5 +1,5 @@
-import type { Database } from "../../../types/database.types";
-import type { UserGroup } from "../../../services/groups/group.service";
+import type { Database } from "@/types/database.types";
+import type { UserGroup } from "@/services/groups/group.service";
 
 export type PaymentRow = Database["public"]["Tables"]["payments"]["Row"];
 

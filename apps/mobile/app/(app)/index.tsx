@@ -9,15 +9,15 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import type { ReactElement } from "react";
-import { useAuth } from "../../src/auth/AuthProvider";
-import { DashboardHeader } from "../../src/features/dashboard/components/DashboardHeader";
-import { BalanceSummary } from "../../src/features/dashboard/components/BalanceSummary";
-import { GroupList } from "../../src/features/dashboard/components/GroupList";
-import { RecentActivity } from "../../src/features/dashboard/components/RecentActivity";
-import { useDashboard } from "../../src/features/dashboard/hooks/useDashboard";
-import { dashboardColors } from "../../src/features/dashboard/theme";
-import { firstName } from "../../src/features/dashboard/utils/dashboard.formatters";
-import { BottomNav } from "../../src/shared/navigation/BottomNav";
+import { useAuth } from "@/auth/AuthProvider";
+import { DashboardHeader } from "@/features/dashboard/components/DashboardHeader";
+import { BalanceSummary } from "@/features/dashboard/components/BalanceSummary";
+import { GroupList } from "@/features/dashboard/components/GroupList";
+import { RecentActivity } from "@/features/dashboard/components/RecentActivity";
+import { useDashboard } from "@/features/dashboard/hooks/useDashboard";
+import { dashboardColors } from "@/features/dashboard/theme";
+import { firstName } from "@/features/dashboard/utils/dashboard.formatters";
+import { BottomNav } from "@/shared/navigation/BottomNav";
 
 export default function AppHomeScreen(): ReactElement {
   const { user } = useAuth();
@@ -76,7 +76,10 @@ export default function AppHomeScreen(): ReactElement {
             <GroupList
               groups={data.groups}
               onGroupPress={(groupId) =>
-                router.push({ pathname: "/(app)/groups", params: { groupId } })
+                router.push({
+                  pathname: "/(app)/groups/[groupId]",
+                  params: { groupId },
+                })
               }
               onCreate={() => router.push("/(app)/groups")}
             />

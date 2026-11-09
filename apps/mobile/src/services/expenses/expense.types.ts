@@ -1,5 +1,5 @@
 import type { Expense } from "@chillar/core";
-import type { Database } from "../../types/database.types";
+import type { Database } from "@/types/database.types";
 
 export type ExpenseRow = Database["public"]["Tables"]["expenses"]["Row"];
 export type ExpensePayerRow = Database["public"]["Tables"]["expense_payers"]["Row"];

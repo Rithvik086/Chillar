@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import type { ReactElement } from "react";
-import { dashboardColors } from "../theme";
-import { formatRupees } from "../utils/dashboard.formatters";
+import { dashboardColors } from "@/features/dashboard/theme";
+import { formatRupees } from "@/features/dashboard/utils/dashboard.formatters";
 
 export function BalanceSummary({
   balance,

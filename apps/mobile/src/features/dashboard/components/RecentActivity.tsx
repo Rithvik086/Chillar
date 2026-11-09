@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
 import type { ReactElement } from "react";
-import type { DashboardActivity } from "../types/dashboard.types";
-import { dashboardColors } from "../theme";
-import { formatDate, formatRupees } from "../utils/dashboard.formatters";
+import type { DashboardActivity } from "@/features/dashboard/types/dashboard.types";
+import { dashboardColors } from "@/features/dashboard/theme";
+import { formatDate, formatRupees } from "@/features/dashboard/utils/dashboard.formatters";
 
 export function RecentActivity({
   activities,

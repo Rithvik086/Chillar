@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { fetchDashboard } from "../services/dashboard.service";
-import type { DashboardData } from "../types/dashboard.types";
+import { fetchDashboard } from "@/features/dashboard/services/dashboard.service";
+import type { DashboardData } from "@/features/dashboard/types/dashboard.types";
 
 export function useDashboard(userId: string | undefined): {
   data: DashboardData | null;

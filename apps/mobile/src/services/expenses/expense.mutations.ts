@@ -1,4 +1,4 @@
-import { supabase } from "../../utils/supabase";
+import { supabase } from "@/utils/supabase";
 import { fetchGroupExpenses } from "./expense.repository";
 import {
   assertValidSplitType,

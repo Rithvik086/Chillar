@@ -2,7 +2,7 @@ import * as AuthSession from "expo-auth-session";
 import * as WebBrowser from "expo-web-browser";
 import type { Session, User } from "@supabase/supabase-js";
 import { createContext, useContext, useEffect, useMemo, useState, type PropsWithChildren, type ReactElement } from "react";
-import { supabase } from "../utils/supabase";
+import { supabase } from "@/utils/supabase";
 import { exchangeOAuthCallback } from "./oauth";
 
 WebBrowser.maybeCompleteAuthSession();

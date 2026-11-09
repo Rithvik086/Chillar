@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { mapExpense } from "./expense.mapper";
-import type { ExpensePayerRow, ExpenseRow, ExpenseSplitRow } from "./expense.types";
+import type { ExpensePayerRow, ExpenseRow, ExpenseSplitRow } from "@/services/expenses/expense.types";
 
 const groupId = "11111111-1111-4111-8111-111111111111";
 const creatorId = "22222222-2222-4222-8222-222222222222";

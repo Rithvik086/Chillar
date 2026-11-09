@@ -1,12 +1,12 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import type { ReactElement } from "react";
-import type { DashboardGroup } from "../types/dashboard.types";
-import { dashboardColors } from "../theme";
+import type { DashboardGroup } from "@/features/dashboard/types/dashboard.types";
+import { dashboardColors } from "@/features/dashboard/theme";
 import {
   formatRupees,
   initials,
   relativeActivityDate,
-} from "../utils/dashboard.formatters";
+} from "@/features/dashboard/utils/dashboard.formatters";
 
 export function GroupListItem({
   item,
