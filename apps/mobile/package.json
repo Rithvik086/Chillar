@@ -1,7 +1,7 @@
 {
   "name": "@chillar/mobile",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "expo-router/entry",
   "dependencies": {
     "@chillar/core": "1.0.0",
     "@chillar/shared": "1.0.0",
@@ -10,6 +10,7 @@
     "expo": "~58.0.23",
     "expo-auth-session": "^58.0.17",
     "expo-linking": "^58.0.16",
+    "expo-router": "~58.0.30",
     "expo-status-bar": "~58.0.4",
     "expo-web-browser": "^58.0.7",
     "react": "19.3.0",
