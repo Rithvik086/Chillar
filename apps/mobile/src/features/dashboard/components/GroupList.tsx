@@ -8,12 +8,10 @@ export function GroupList({
   groups,
   onGroupPress,
   onCreate,
-  onJoin,
 }: {
   groups: readonly DashboardGroup[];
   onGroupPress: (groupId: string) => void;
   onCreate?: () => void;
-  onJoin?: () => void;
 }): ReactElement {
   return (
     <View style={styles.container}>
@@ -29,28 +27,17 @@ export function GroupList({
         <View style={styles.empty}>
           <Text style={styles.emptyTitle}>No groups yet</Text>
           <Text style={styles.emptyText}>
-            Create a group or join one to start sharing expenses.
+            Create a group to start sharing expenses.
           </Text>
-          {onCreate || onJoin ? (
+          {onCreate ? (
             <View style={styles.actions}>
-              {onCreate ? (
-                <Pressable
-                  accessibilityRole="button"
-                  onPress={onCreate}
-                  style={styles.primary}
-                >
-                  <Text style={styles.primaryText}>Create Group</Text>
-                </Pressable>
-              ) : null}
-              {onJoin ? (
-                <Pressable
-                  accessibilityRole="button"
-                  onPress={onJoin}
-                  style={styles.secondary}
-                >
-                  <Text style={styles.secondaryText}>Join Group</Text>
-                </Pressable>
-              ) : null}
+              <Pressable
+                accessibilityRole="button"
+                onPress={onCreate}
+                style={styles.primary}
+              >
+                <Text style={styles.primaryText}>Create Group</Text>
+              </Pressable>
             </View>
           ) : null}
         </View>
@@ -100,18 +87,6 @@ const styles = StyleSheet.create({
   },
   primaryText: {
     color: dashboardColors.surface,
-    fontWeight: "700",
-    fontSize: 13,
-  },
-  secondary: {
-    paddingHorizontal: 12,
-    paddingVertical: 9,
-    borderRadius: 6,
-    borderWidth: 1,
-    borderColor: dashboardColors.border,
-  },
-  secondaryText: {
-    color: dashboardColors.primaryActive,
     fontWeight: "700",
     fontSize: 13,
   },

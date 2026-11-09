@@ -1,5 +1,5 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { useState, type ReactElement } from "react";
+import { useEffect, useState, type ReactElement } from "react";
 import {
   ActivityIndicator,
   Alert,
@@ -23,12 +23,17 @@ import { buildGroupActivities } from "@/features/groups/utils/group-detail";
 export default function GroupDetailScreen(): ReactElement {
   const { user } = useAuth();
   const router = useRouter();
-  const params = useLocalSearchParams<{ groupId?: string | string[] }>();
+  const params = useLocalSearchParams<{ groupId?: string | string[]; created?: string | string[] }>();
   const groupId = Array.isArray(params.groupId)
     ? params.groupId[0]
     : params.groupId;
   const { data, error, isLoading, refresh } = useGroupDetail(groupId, user?.id);
   const [filter, setFilter] = useState<"all" | "expense" | "settlement">("all");
+  useEffect(() => {
+    if (params.created === "true" || (Array.isArray(params.created) && params.created[0] === "true")) {
+      Alert.alert("Group created", "Your group is ready. Add an expense when you are ready.");
+    }
+  }, [params.created]);
 
   if (isLoading) {
     return (

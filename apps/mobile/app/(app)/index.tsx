@@ -81,7 +81,7 @@ export default function AppHomeScreen(): ReactElement {
                   params: { groupId },
                 })
               }
-              onCreate={() => router.push("/(app)/groups")}
+              onCreate={() => router.push("/(app)/groups/create")}
             />
             <RecentActivity activities={data.activities} />
           </>
