@@ -8,6 +8,7 @@ export function AuthGate(): ReactElement {
   const segments = useSegments();
   const inAuthGroup = segments[0] === "(auth)";
   const inAppGroup = segments[0] === "(app)";
+  const isOAuthCallback = segments[0] === "auth";
 
   if (isLoading) {
     return (
@@ -17,7 +18,7 @@ export function AuthGate(): ReactElement {
     );
   }
 
-  if (!session && !inAuthGroup) return <Redirect href="/(auth)/sign-in" />;
+  if (!session && !inAuthGroup && !isOAuthCallback) return <Redirect href="/(auth)/sign-in" />;
   if (session && !inAppGroup) return <Redirect href="/(app)" />;
 
   return <Stack />;

@@ -1,9 +1,9 @@
 import * as AuthSession from "expo-auth-session";
-import * as Linking from "expo-linking";
 import * as WebBrowser from "expo-web-browser";
 import type { Session, User } from "@supabase/supabase-js";
 import { createContext, useContext, useEffect, useMemo, useState, type PropsWithChildren, type ReactElement } from "react";
 import { supabase } from "../utils/supabase";
+import { exchangeOAuthCallback } from "./oauth";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -81,17 +81,7 @@ export function AuthProvider({ children }: PropsWithChildren): ReactElement {
         if (result.type === "cancel" || result.type === "dismiss") return;
         if (result.type !== "success") throw new Error("Google sign-in did not complete.");
 
-        const callback = Linking.parse(result.url);
-        const callbackError = callback.queryParams?.error_description ?? callback.queryParams?.error;
-        if (callbackError) throw new Error(String(callbackError));
-
-        const code = callback.queryParams?.code;
-        if (typeof code !== "string" || code.length === 0) {
-          throw new Error("Google sign-in returned no authorization code.");
-        }
-
-        const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
-        if (exchangeError) throw exchangeError;
+        await exchangeOAuthCallback(result.url);
       } catch (error: unknown) {
         setErrorMessage(`Google sign-in failed: ${getErrorMessage(error)}`);
       } finally {
