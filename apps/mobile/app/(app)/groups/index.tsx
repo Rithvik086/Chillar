@@ -1,4 +1,5 @@
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import type { ReactElement } from "react";
 
 export default function GroupsScreen(): ReactElement {
@@ -6,7 +7,9 @@ export default function GroupsScreen(): ReactElement {
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
         <Text style={styles.title}>Groups</Text>
-        <Text style={styles.subtitle}>Group functionality will be added in a later phase.</Text>
+        <Text style={styles.subtitle}>
+          Group functionality will be added in a later phase.
+        </Text>
       </View>
     </SafeAreaView>
   );

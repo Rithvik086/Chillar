@@ -1,4 +1,5 @@
-import { Pressable, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import type { ReactElement } from "react";
 import { useAuth } from "../../../src/auth/AuthProvider";
 
@@ -23,6 +24,11 @@ const styles = StyleSheet.create({
   content: { flex: 1, justifyContent: "center", padding: 24, gap: 16 },
   title: { color: "#0f172a", fontSize: 28, fontWeight: "700" },
   email: { color: "#475569", fontSize: 16 },
-  button: { alignItems: "center", borderRadius: 12, backgroundColor: "#0f172a", padding: 14 },
+  button: {
+    alignItems: "center",
+    borderRadius: 12,
+    backgroundColor: "#0f172a",
+    padding: 14,
+  },
   buttonText: { color: "#ffffff", fontSize: 16, fontWeight: "600" },
 });

@@ -1,30 +1,109 @@
-import { Link } from "expo-router";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { useRouter } from "expo-router";
+import {
+  ActivityIndicator,
+  RefreshControl,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import type { ReactElement } from "react";
 import { useAuth } from "../../src/auth/AuthProvider";
+import { DashboardHeader } from "../../src/features/dashboard/components/DashboardHeader";
+import { BalanceSummary } from "../../src/features/dashboard/components/BalanceSummary";
+import { GroupList } from "../../src/features/dashboard/components/GroupList";
+import { RecentActivity } from "../../src/features/dashboard/components/RecentActivity";
+import { useDashboard } from "../../src/features/dashboard/hooks/useDashboard";
+import { dashboardColors } from "../../src/features/dashboard/theme";
+import { firstName } from "../../src/features/dashboard/utils/dashboard.formatters";
+import { BottomNav } from "../../src/shared/navigation/BottomNav";
 
 export default function AppHomeScreen(): ReactElement {
   const { user } = useAuth();
-  const displayName = user?.user_metadata?.full_name ?? user?.user_metadata?.name ?? "Chillar user";
+  const router = useRouter();
+  const displayName = String(
+    user?.user_metadata?.full_name ?? user?.user_metadata?.name ?? "there",
+  );
+  const { data, error, isLoading, isRefreshing, refresh } = useDashboard(
+    user?.id,
+  );
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.content}>
-        <Text style={styles.eyebrow}>CHILLAR</Text>
-        <Text style={styles.title}>Welcome, {String(displayName)}</Text>
-        <Text style={styles.subtitle}>Your authenticated app shell is ready.</Text>
-        <Link href="/(app)/groups" style={styles.link}>Groups placeholder</Link>
-        <Link href="/(app)/profile" style={styles.link}>Profile</Link>
-      </View>
+    <SafeAreaView style={styles.safeArea}>
+      <DashboardHeader displayName={displayName} />
+      <ScrollView
+        contentContainerStyle={styles.content}
+        refreshControl={
+          <RefreshControl
+            refreshing={isRefreshing}
+            onRefresh={refresh}
+            tintColor={dashboardColors.primary}
+          />
+        }
+      >
+        <View style={styles.welcome}>
+          <Text style={styles.brand}>Chillar</Text>
+          <Text style={styles.greeting}>
+            Good morning, {firstName(displayName)}!
+          </Text>
+        </View>
+        {isLoading ? (
+          <View style={styles.state}>
+            <ActivityIndicator color={dashboardColors.primary} />
+            <Text style={styles.stateText}>Loading your balances...</Text>
+          </View>
+        ) : null}
+        {error ? (
+          <View style={styles.error}>
+            <Text style={styles.errorText}>{error}</Text>
+            <Text
+              onPress={refresh}
+              accessibilityRole="button"
+              style={styles.retry}
+            >
+              Retry
+            </Text>
+          </View>
+        ) : null}
+        {!isLoading && !error && data ? (
+          <>
+            <BalanceSummary
+              balance={data.balance}
+              owe={data.owe}
+              owed={data.owed}
+            />
+            <GroupList
+              groups={data.groups}
+              onGroupPress={(groupId) =>
+                router.push({ pathname: "/(app)/groups", params: { groupId } })
+              }
+              onCreate={() => router.push("/(app)/groups")}
+            />
+            <RecentActivity activities={data.activities} />
+          </>
+        ) : null}
+      </ScrollView>
+      <BottomNav />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#f8fafc" },
-  content: { flex: 1, padding: 24, justifyContent: "center", gap: 16 },
-  eyebrow: { color: "#2563eb", fontSize: 13, fontWeight: "700", letterSpacing: 1.5 },
-  title: { color: "#0f172a", fontSize: 28, fontWeight: "700" },
-  subtitle: { color: "#475569", fontSize: 16 },
-  link: { color: "#2563eb", fontSize: 16, fontWeight: "600" },
+  safeArea: { flex: 1, backgroundColor: dashboardColors.background },
+  content: { padding: 16, paddingBottom: 92, gap: 12 },
+  welcome: { paddingVertical: 4 },
+  brand: { color: dashboardColors.text, fontSize: 20, fontWeight: "700" },
+  greeting: { color: dashboardColors.secondary, fontSize: 16, marginTop: 2 },
+  state: { alignItems: "center", paddingVertical: 48, gap: 10 },
+  stateText: { color: dashboardColors.secondary },
+  error: {
+    padding: 14,
+    borderRadius: 8,
+    backgroundColor: "#FEF2F2",
+    borderWidth: 1,
+    borderColor: "#FECACA",
+  },
+  errorText: { color: dashboardColors.negative, fontSize: 14 },
+  retry: { color: dashboardColors.primary, fontWeight: "700", marginTop: 8 },
 });
